@@ -1,0 +1,64 @@
+{
+  "settings": {
+    "totalCards": "16",
+    "pairs": "8"
+  },
+  "cards": [
+    {
+      "id": "1",
+      "srcJpeg":"./src/bmw-1.jpeg",
+      "srcAvif":"./src/bmw-1-avif.avif",
+      "srcWebp":"./src/bmw-1-webp.webp",
+      "alt":"The grey bmw car f80 in the fall forest"
+    },
+    {
+      "id": "2",
+      "srcJpeg":"./src/bmw-2.jpeg",
+      "srcAvif":"./src/bmw-2-avif.avif",
+      "srcWebp":"./src/bmw-2-webp.webp",
+      "alt":"The black bmw car f90 at the sunset"
+    },
+    {
+      "id": "3",
+      "srcJpeg":"./src/bmw-3.jpeg",
+      "srcAvif":"./src/bmw-3-avif.avif",
+      "srcWebp":"./src/bmw-3-webp.webp",
+      "alt":"The white bmw car f82 in the city"
+    },
+    {
+      "id": "4",
+      "srcJpeg":"./src/bmw-4.jpeg",
+      "srcAvif":"./src/bmw-4-avif.avif",
+      "srcWebp":"./src/bmw-4-webp.webp",
+      "alt":"The black bmw car f82"
+    },
+    {
+      "id": "5",
+      "srcJpeg":"./src/bmw-5.jpeg",
+      "srcAvif":"./src/bmw-5-avif.avif",
+      "srcWebp":"./src/bmw-5-webp.webp",
+      "alt":"The bmw motorcycle"
+    },
+    {
+      "id": "6",
+      "srcJpeg":"./src/bmw-6.jpeg",
+      "srcAvif":"./src/bmw-6-avif.avif",
+      "srcWebp":"./src/bmw-6-webp.webp",
+      "alt":"The grey bmw car m5 f90 in the forest"
+    },
+    {
+      "id": "7",
+      "srcJpeg":"./src/bmw-7.jpeg",
+      "srcAvif":"./src/bmw-7-avif.avif",
+      "srcWebp":"./src/bmw-7-webp.webp",
+      "alt":"The dark bmw car in the red forest"
+    },
+    {
+      "id": "8",
+      "srcJpeg":"./src/bmw-8.jpeg",
+      "srcAvif":"./src/bmw-8-avif.avif",
+      "srcWebp":"./src/bmw-8-webp.webp",
+      "alt":"The dark bmw car m4 at night"
+    }
+  ]
+}
