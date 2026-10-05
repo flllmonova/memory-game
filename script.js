@@ -29,8 +29,9 @@ async function initLayout() {
 
     const header = createHeader();
     const main = createStatsAndGameBoard();
+    const footer = createFooter();
 
-    [header, main].forEach((el) => pageWrapper.appendChild(el));
+    [header, main, footer].forEach((el) => pageWrapper.appendChild(el));
 
     initGame(cardsData);
 
@@ -43,11 +44,6 @@ async function initLayout() {
       initGame(cardsData);
     })
 
-    const leaderboardButton = document.querySelector('.leaderboard-button');
-      leaderboardButton.addEventListener('click', () => {
-      foundPairs = 7;
-      updateFoundPairs();
-    })
   } catch(error) {
     console.log('Failed to init game', error);
   }
@@ -75,6 +71,29 @@ function createHeader() {
   headerButtons.forEach((button) => header.appendChild(button));
 
   return header;
+}
+
+function createFooter() {
+  const footer = document.createElement('footer');
+  footer.classList.add('footer');
+
+  const photoStock = document.createElement('p');
+  photoStock.classList.add('photo-stock');
+
+  const photoStockText = document.createElement('span');
+  photoStockText.textContent = "Photo Stock: ";
+
+  const photoStockLink = document.createElement('a');
+  photoStockLink.setAttribute('href', 'https://unsplash.com/');
+  photoStockLink.setAttribute('target', '_blank');
+  photoStockLink.setAttribute('rel', 'noreferrer noopener');
+  photoStockLink.textContent = 'unsplash';
+
+  [photoStockText, photoStockLink].forEach((el) => photoStock.appendChild(el));
+
+  footer.appendChild(photoStock);
+
+  return footer;
 }
 
 function createGameStats() {
