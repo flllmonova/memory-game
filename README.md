@@ -5,7 +5,7 @@
 
 ## Demo
 
-Link to the game: !(Memory Game Demo)[https://github.com/flllmonova/memory-game]
+Link to the game: !(Memory Game Demo)[github.com/flllmonova/memory-game]
 
 ## Game rules
 
