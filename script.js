@@ -397,15 +397,14 @@ function closeModal() {
 function lockScreen() {
   const screen = document.querySelector('body');
   if (screen) {
-    screen.style.overflow = 'hidden';
+    screen.style.overflowY = 'hidden';
   }
 }
 
 function unlockScreen() {
   const screen = document.querySelector('body');
   if (screen) {
-    screen.style.overflow = 'auto';
-    screen.style.overflowX = 'hidden';
+    screen.style.overflowY = 'scroll';
   }
 }
 
