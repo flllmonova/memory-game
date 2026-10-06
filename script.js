@@ -443,7 +443,6 @@ function fixResult() {
   results.push(result)
 
   localStorage.setItem('results', JSON.stringify(results));
-  console.log(localStorage.getItem('results'));
 }
 
 function createLeaderBoard() {
