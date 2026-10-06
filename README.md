@@ -4,9 +4,11 @@
 
 
 ## Demo
+
 Link to the game: !(Memory Game Demo)[https://github.com/flllmonova/memory-game]
 
 ## Game rules
+
 1. The game starts on the first load and every time the page is reloaded. All 16 cards are shuffled and face down, the move counter is 0, and the number of found pairs is 0 out of 8. The player can start opening cards immediately.
 2. One move consists of opening two different available cards.
 3. If the images match, both cards remain open until the end of the game. The counter of found pairs increases by 1.
@@ -15,6 +17,7 @@ Link to the game: !(Memory Game Demo)[https://github.com/flllmonova/memory-game]
 6. The header contains the “New Game” and “Leaderboard” buttons. “New Game” starts the game anew: the cards are shuffled and closed, and the counters are reset. “Leaderboard” opens the saved results in a modal window.
 
 ## Tech Stack
+
 * HTML5
 * CSS3
 * JS 
