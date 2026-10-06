@@ -19,12 +19,13 @@ Link to the game: [Memory Game Demo](https://flllmonova.github.io/memory-game/)
 
 * HTML5;
 * CSS3;
-* JS; 
+* JS;
 * localStorage;
-* Git.
+* Git;
+* GitHub.
 
 ## How to run locally
 
 1. Open the terminal `Powershell / Bash`;
 2. Clone the repository: `git clone https://github.com/flllmonova/memory-game.git`;
-3. Open file `index.html` in the browser. 
+3. Open file `index.html` in the browser.
