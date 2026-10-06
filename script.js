@@ -3,6 +3,7 @@
 const invertedCards = [];
 
 const modal = createModal();
+const leaderBoard = createLeaderBoard();
 
 let isGameBoardLocked = false;
 let movesCount = 0;
@@ -23,6 +24,7 @@ async function initLayout() {
     const body = document.body;
 
     body.appendChild(modal);
+    body.appendChild(leaderBoard);
 
     const pageWrapper = createPageWrapper();
     body.insertBefore(pageWrapper, body.firstChild);
@@ -148,6 +150,7 @@ function createHeaderButtons() {
   leaderboardButton.classList.add('leaderboard-button', 'button');
   leaderboardButton.type = "button";
   leaderboardButton.textContent = 'Leaderboard';
+  leaderboardButton.addEventListener('click', () => showLeaderBoard());
 
   return [newGameButton, leaderboardButton];
 }
@@ -345,7 +348,9 @@ function updateFoundPairs() {
   if (foundPairs === maxFoundPairs) {
     const modalMessage = modal.querySelector('.modal-message');
     modalMessage.textContent = `You successfully completed the game in ${movesCount} moves.`;
-    showModal();
+    setTimeout(() => {
+      showModal();
+    }, 300);
     fixResult();
   }
 }
@@ -366,6 +371,17 @@ function initStatics() {
 
   const pairsFoundValue = document.querySelector('.pairs-found span:last-child');
   if (pairsFoundValue) pairsFoundValue.textContent = '0 / 8';
+}
+
+function showLeaderBoard() {
+  leaderBoard?.classList?.add('is-visible');
+  displayResults();
+  lockScreen();
+}
+
+function closeLeaderBoard() {
+  leaderBoard?.classList?.remove('is-visible');
+  unlockScreen();
 }
 
 function showModal() {
@@ -394,12 +410,23 @@ function unlockScreen() {
 }
 
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closeModal();
+  const key = event.key;
+  const isKeyEscape = key === 'Escape';
+
+  if (modal) {
+    const isModalVisible = modal.classList.contains('is-visible');
+    if (isModalVisible && isKeyEscape) {
+      closeModal();
+    }
+  }
+
+  if (leaderBoard) {
+    const isLeaderBoardVisible = leaderBoard.classList.contains('is-visible');
+    if (isLeaderBoardVisible && isKeyEscape) {
+      closeLeaderBoard();
+    }
   }
 });
-
-// console.log(localStorage.getItem('result'));
 
 function fixResult() {
   const date = new Date();
@@ -419,3 +446,111 @@ function fixResult() {
   console.log(localStorage.getItem('results'));
 }
 
+function createLeaderBoard() {
+  const leaderBoardModal = document.createElement('div');
+  leaderBoardModal.classList.add('leader-board-modal');
+
+  const leaderBoardOverlay = document.createElement('div');
+  leaderBoardOverlay.classList.add('leader-board-overlay');
+
+  const leaderBoardContent = document.createElement('div');
+  leaderBoardContent.classList.add('leader-board-content');
+  
+  [leaderBoardOverlay, leaderBoardContent].forEach((el) => leaderBoardModal.appendChild(el));
+  
+  const leaderBoardTitle = document.createElement('h2');
+  leaderBoardTitle.classList.add('leader-board__title');
+  leaderBoardTitle.textContent = 'Leader Board table'
+  
+  const leaderBoardMessage = document.createElement('p');
+  leaderBoardMessage.classList.add('leader-board__message');
+
+  const leaderBoardTable = document.createElement('table');
+
+  const leaderBoardCloseButton = document.createElement('button');
+  leaderBoardCloseButton.classList.add('button', 'leader-board-close-button');
+  leaderBoardCloseButton.textContent = 'Close';
+  
+  [
+    leaderBoardTitle, 
+    leaderBoardMessage, 
+    leaderBoardTable,
+    leaderBoardCloseButton,
+  ].forEach((el) => leaderBoardContent.appendChild(el));
+
+  [
+    leaderBoardOverlay,
+    leaderBoardCloseButton,
+  ].forEach((el) => el.addEventListener('click', () => closeLeaderBoard()));
+
+  return leaderBoardModal;
+}
+
+function displayResults() {
+  const results = localStorage.getItem('results');
+  const leaderBoardMessage = document.querySelector('.leader-board__message');
+
+  if (!results) {
+    if (leaderBoardMessage) {
+      leaderBoardMessage.textContent = 'No results yet.';
+    }
+  } else {
+    const parsedResults = JSON.parse(results);
+    leaderBoardMessage.textContent = '';
+    makeLeaderBoardTable(parsedResults);
+  }
+}
+
+function makeLeaderBoardTable(resultsData) {
+  const leaderBoardTable = leaderBoard.querySelector('table');
+
+  while(leaderBoardTable.firstChild) leaderBoardTable.removeChild(leaderBoardTable.firstChild);
+
+  const thead = document.createElement('thead');
+  
+  const thRow = document.createElement('tr');
+  const thPlace = document.createElement('th');
+  thPlace.textContent = 'Place';
+  const thMoves = document.createElement('th');
+  thMoves.textContent = 'Moves';
+  const thPlayer = document.createElement('th');
+  thPlayer.textContent = 'Date';
+
+  [thPlace, thMoves, thPlayer].forEach((th) => thRow.appendChild(th));
+  thead.appendChild(thRow);
+
+  const tbody = document.createElement('tbody');
+
+  [thead, tbody].forEach((el) => leaderBoardTable.appendChild(el));
+
+  const sortedResults = resultsData.sort((a, b) => {
+    if (a.moves === b.moves) {
+      return a.timeInMs - b.timeInMs;
+    }
+    return a.moves - b.moves;
+  });
+
+  sortedResults.slice(0, 10).forEach((result, index) => {
+    const playerResult = {
+      place: index + 1,
+      moves: result.moves,
+      formattedDate: result.formattedDate,
+    };
+    const playerRow = addPlayer(playerResult);
+    tbody.appendChild(playerRow);
+  });
+}
+
+function addPlayer(playerResult) {
+  const tRow = document.createElement('tr');
+  const tdPlace = document.createElement('td');
+  tdPlace.textContent = playerResult.place;
+  const tdMoves = document.createElement('td');
+  tdMoves.textContent = playerResult.moves;
+  const tdDate = document.createElement('td');
+  tdDate.textContent = playerResult.formattedDate;
+  
+  [tdPlace, tdMoves, tdDate].forEach((td) => tRow.appendChild(td));
+
+  return tRow;
+}

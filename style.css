@@ -57,6 +57,7 @@
 .title {
   color: #ffffff;
   font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 .stats > * {
@@ -138,7 +139,8 @@
   object-position: start center;
 }
 
-.modal {
+.modal,
+.leader-board-modal {
   font-family: inherit;
   display: none;
   position: fixed;
@@ -148,17 +150,21 @@
   align-items: center;
 }
 
-.modal.is-visible {
+.modal.is-visible,
+.leader-board-modal.is-visible {
   display: flex;
 }
 
 .modal.is-visible .modal-overlay,
-.modal.is-visible .modal-content {
+.modal.is-visible .modal-content,
+.leader-board-modal.is-visible .leader-board-overlay,
+.leader-board-modal.is-visible .leader-board-content {
   opacity: 1;
   visibility: visible;
 }
 
-.modal-overlay {
+.modal-overlay,
+.leader-board-overlay {
   display: block;
   position: absolute;
   z-index: 10;
@@ -167,7 +173,8 @@
   cursor: pointer;
 }
 
-.modal-content {
+.modal-content,
+.leader-board-content {
   display: block;
   z-index: 20;
   background-color: var(--modal-content-bg);
@@ -182,19 +189,26 @@
 }
 
 .modal-overlay,
-.modal-content {
+.modal-content,
+.leader-board-overlay,
+.leader-board-content {
   opacity: 0;
   visibility: hidden;
   transition: 0.5s ease opacity, 0.5s ease visibility;
 }
 
-.modal-content {
+.modal-content,
+.leader-board-content {
   color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: start;
   align-items: center;
+}
+
+.modal-message {
+  text-align: center;
 }
 
 .modal-button-wrapper {
@@ -215,4 +229,27 @@
 
 .photo-stock a {
   color: inherit;
+}
+
+.leader-board__title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead,
+tbody,
+table {
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  text-align: center;
 }
