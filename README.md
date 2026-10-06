@@ -17,12 +17,7 @@ Link to the game: [Memory Game Demo](https://flllmonova.github.io/memory-game/)
 
 ## Tech Stack
 
-* HTML5;
-* CSS3;
-* JS;
-* localStorage;
-* Git;
-* GitHub.
+`HTML5` `CSS3` `JS` `localStorage` `Git` `GitHub`
 
 ## How to run locally
 
