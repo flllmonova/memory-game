@@ -4,6 +4,7 @@ const invertedCards = [];
 
 const modal = createModal();
 const leaderBoard = createLeaderBoard();
+const timerIdArr = [];
 
 let isGameBoardLocked = false;
 let movesCount = 0;
@@ -52,6 +53,9 @@ async function initLayout() {
 }
 
 function initGame(cardsData) {
+
+  timerIdArr.forEach((id) => clearTimeout(id));
+  timerIdArr.splice(0);
 
   initStatics();
 
@@ -286,11 +290,12 @@ function matchCards() {
     });
     invertedCards.splice(0);
   } else {
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       firstCard.classList.remove('visible');
       secondCard.classList.remove('visible');
       invertedCards.splice(0);
     }, 750);
+    timerIdArr.push(timerId);
   }
 }
 
@@ -348,9 +353,10 @@ function updateFoundPairs() {
   if (foundPairs === maxFoundPairs) {
     const modalMessage = modal.querySelector('.modal-message');
     modalMessage.textContent = `You successfully completed the game in ${movesCount} moves.`;
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       showModal();
     }, 300);
+    timerIdArr.push(timerId);
     fixResult();
   }
 }
