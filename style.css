@@ -1,0 +1,255 @@
+:root {
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-content-bg: rgb(70, 79, 135);
+  background-color: rgb(46, 46, 46);
+  font-family: "Orbitron", sans-serif;
+  overflow-x: hidden;
+}
+
+.page-wrapper {
+  max-width: 1440px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 1rem;
+}
+
+.header {
+  width: 100%;
+  padding-block: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  font-family: inherit;
+  background-image: url(./src/button-cover.jpg);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  color: aliceblue;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.main {
+  max-width: 32rem;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.stats > * {
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5em;
+  letter-spacing: 0.05em;
+}
+
+.stats > * + * {
+  margin-block-start: 0.5rem;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: 1px solid lightgray;
+}
+
+.card-back,
+.card-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* border-radius: 0.5rem; */
+}
+
+.card-back {
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.card-front {
+  background-image: url(./src/card-cover.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card.visible .card-back {
+  visibility: visible;
+  opacity: 1;
+}
+
+.card__img-wrapper {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: clip;
+  /* border-radius: 0.5rem; */
+}
+
+.card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(110%);
+}
+
+.card[data-id="5"] .card__img {
+  object-position: start center;
+}
+
+.modal,
+.leader-board-modal {
+  font-family: inherit;
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.is-visible,
+.leader-board-modal.is-visible {
+  display: flex;
+}
+
+.modal.is-visible .modal-overlay,
+.modal.is-visible .modal-content,
+.leader-board-modal.is-visible .leader-board-overlay,
+.leader-board-modal.is-visible .leader-board-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay,
+.leader-board-overlay {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  background-color: var(--modal-overlay);
+  cursor: pointer;
+}
+
+.modal-content,
+.leader-board-content {
+  display: block;
+  z-index: 20;
+  background-color: var(--modal-content-bg);
+  padding: 1rem;
+  max-width: 30rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  border: 1px solid lightgray;
+}
+
+.modal-overlay,
+.modal-content,
+.leader-board-overlay,
+.leader-board-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease opacity, 0.5s ease visibility;
+}
+
+.modal-content,
+.leader-board-content {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
+}
+
+.modal-message {
+  text-align: center;
+}
+
+.modal-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer {
+  color: #ffffff;
+}
+
+.photo-stock {
+  font-size: 0.8rem;
+}
+
+.photo-stock a {
+  color: inherit;
+}
+
+.leader-board__title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead,
+tbody,
+table {
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  text-align: center;
+}
